@@ -1,0 +1,90 @@
+-- Build started: Mar 19 2025, 14:23:45
+-- Configuration: Release
+-- Looking for C++ compiler support for C++17
+-- C++ compiler has C++17 support
+-- Found Threads: TRUE
+-- CMAKE_CXX_FLAGS:
+-- CMAKE_CXX_FLAGS_RELEASE: -O3 -DNDEBUG
+-- Configuring neural_racer...
+-- Example configuration complete. Run examples with './basic_race' or './hardware_monitor'
+-- Test configuration complete. Run tests with 'ctest' or 'make test'.
+-- Building neural_racer_lib...
+-- Building main executable...
+-- Building examples...
+-- Building tests...
+-- Build completed successfully
+-- Running tests...
+[==========] Running 4 test suites
+[----------] AITests (6 tests)
+[ PASSED  ] AITests.TensorTest
+[ PASSED  ] AITests.InferenceEngineTest
+[ PASSED  ] AITests.DriverModelTest
+[ PASSED  ] AITests.DriverFactoryTest
+[ PASSED  ] AITests.DriverStrategiesTest
+[ PASSED  ] AITests.AdaptiveBehaviorTest
+[----------] HardwareTests (5 tests)
+[ PASSED  ] HardwareTests.DeviceDriverTest
+[ PASSED  ] HardwareTests.FirmwareControllerTest
+[ PASSED  ] HardwareTests.GPUAcceleratorTest
+[ PASSED  ] HardwareTests.SystemInfoTest
+[ PASSED  ] HardwareTests.SimulationTest
+[----------] PhysicsTests (4 tests)
+[ PASSED  ] PhysicsTests.EngineTest
+[ PASSED  ] PhysicsTests.VehicleTest
+[ PASSED  ] PhysicsTests.VehicleDynamicsTest
+[ PASSED  ] PhysicsTests.MultiVehicleTest
+[----------] SimulationTests (5 tests)
+[ PASSED  ] SimulationTests.TrackTest
+[ PASSED  ] SimulationTests.RaceTest
+[ PASSED  ] SimulationTests.TelemetryTest
+[ PASSED  ] SimulationTests.TrackVehicleInteractionTest
+[ PASSED  ] SimulationTests.IntegrationTest
+[==========] 20 tests passed
+
+-- All tests passed
+-- Running main example:
+
+Neural Racer - AI-powered racing simulation
+===========================================
+Version: 0.1.0
+
+=== System Information ===
+OS: Linux 5.15.0
+CPU Cores: 8
+Memory: 16.0 GB total, 12.3 GB available
+GPUs: 
+  NVIDIA GeForce RTX 3070 (8GB)
+CUDA Support: Yes
+OpenCL Support: Yes
+
+=== Hardware Interface ===
+GPU accelerator initialized successfully
+Set GPU to performance mode
+
+=== Physics Initialization ===
+Physics engine initialized successfully
+Hardware acceleration enabled
+
+=== Simulation Start ===
+Creating track: Monza
+Creating vehicles and drivers...
+Starting race simulation...
+
+Race started!
+Lap completed by Driver 1 (Lap 1, Time: 93.2s)
+Lap completed by Driver 2 (Lap 1, Time: 95.8s)
+Lap completed by Driver 1 (Lap 2, Time: 91.4s)
+Lap completed by Driver 2 (Lap 2, Time: 94.1s)
+Lap completed by Driver 1 (Lap 3, Time: 90.7s)
+Race finished!
+
+=== Final Results ===
+P1: Driver 1 (Best Lap: 90.7s)
+P2: Driver 2 (Best Lap: 94.1s)
+
+=== Performance Profile ===
+Physics::Engine::step: 125.43 ms total, 0.82 ms avg (153 calls)
+Race::update: 98.72 ms total, 0.65 ms avg (153 calls)
+Telemetry::update: 45.16 ms total, 0.30 ms avg (153 calls)
+
+Simulation complete. Thank you for using Neural Racer!
