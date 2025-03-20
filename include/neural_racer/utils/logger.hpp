@@ -209,15 +209,20 @@ public:
      * @return std::string String representation of log level
      */
     static std::string levelToString(LogLevel level);
+    
+    /**
+     * @brief Format a timestamp
+     * 
+     * @param timestamp The timestamp to format
+     * @return std::string Formatted timestamp string
+     */
+    static std::string formatTimestamp(const std::chrono::system_clock::time_point& timestamp);
 
 private:
     static std::mutex mutex;
     static std::vector<std::shared_ptr<LogSink>> sinks;
     static LogLevel logLevel;
     static bool initialized;
-    
-    // Format a timestamp
-    static std::string formatTimestamp(const std::chrono::system_clock::time_point& timestamp);
 };
 
 } // namespace utils

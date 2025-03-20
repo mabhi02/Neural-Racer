@@ -4,13 +4,11 @@
 #include <memory>
 #include <vector>
 #include <mutex>
-#include "../hardware/device_driver.hpp"
+// Include Engine definition instead of forward declaration
+#include "neural_racer/physics/engine.hpp"
 
 namespace neural_racer {
 namespace physics {
-
-// Forward declaration
-class Engine;
 
 /**
  * @brief Vehicle specifications structure

@@ -378,6 +378,13 @@ private:
     void generateWaypointsForSegment(const TrackSegment& segment, int segmentIndex, 
                                     float startX, float startY, float startHeading,
                                     float waypointSpacing);
+    
+    // Add these helper methods for file parsing
+    void processInfoLine(const std::string& line);
+    void processEnvironmentLine(const std::string& line);
+    void processSegmentLine(const std::string& line);
+    void processCheckpointLine(const std::string& line);
+    void processSectorLine(const std::string& line);
 };
 
 /**
