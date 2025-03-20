@@ -1,11 +1,14 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <memory>
 #include <vector>
 #include <mutex>
 #include <atomic>
 #include <thread>
 #include <condition_variable>
+#include <functional>  // For std::function
+#include <cmath>       // For math functions
 #include "../hardware/device_driver.hpp"
 
 namespace neural_racer {

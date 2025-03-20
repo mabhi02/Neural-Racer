@@ -1,8 +1,10 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <memory>
 #include <string>
 #include <vector>
+#include <cmath>   // For math functions
 #include "inference.hpp"
 #include "../physics/vehicle.hpp"
 #include "../simulation/track.hpp"
@@ -87,7 +89,7 @@ enum class Strategy {
  * This class implements an AI driver that uses a neural network model
  * to control a vehicle in a racing simulation.
  */
-class Driver {
+class Driver : public std::enable_shared_from_this<Driver> {
 public:
     /**
      * @brief Construct a new Driver
@@ -155,6 +157,15 @@ public:
      * @return const std::string& Driver name
      */
     const std::string& getName() const;
+    
+    /**
+     * @brief Get driver's vehicle
+     * 
+     * @return std::shared_ptr<physics::Vehicle> The driver's vehicle
+     */
+    std::shared_ptr<physics::Vehicle> getVehicle() const {
+        return vehicle;
+    }
     
     /**
      * @brief Set race strategy

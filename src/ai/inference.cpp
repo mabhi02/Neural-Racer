@@ -5,6 +5,7 @@
 #include <numeric>
 #include <algorithm>
 #include <cmath>
+#include <thread> // For std::this_thread
 
 namespace neural_racer {
 namespace ai {
@@ -277,11 +278,11 @@ bool InferenceEngine::loadModel() {
     modelInfo.name = "Racing Driver Model";
     
     // Determine model format from file extension
-    if (modelPath.ends_with(".onnx")) {
+    if (endsWith(modelPath, ".onnx")) {
         modelInfo.format = ModelFormat::ONNX;
-    } else if (modelPath.ends_with(".pb") || modelPath.ends_with(".savedmodel")) {
+    } else if (endsWith(modelPath, ".pb") || endsWith(modelPath, ".savedmodel")) {
         modelInfo.format = ModelFormat::TensorFlow;
-    } else if (modelPath.ends_with(".pt") || modelPath.ends_with(".pth")) {
+    } else if (endsWith(modelPath, ".pt") || endsWith(modelPath, ".pth")) {
         modelInfo.format = ModelFormat::PyTorch;
     } else {
         modelInfo.format = ModelFormat::Custom;

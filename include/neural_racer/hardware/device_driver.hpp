@@ -4,6 +4,9 @@
 #include <memory>
 #include <vector>
 #include <cstdint>
+#include <functional>  // For std::function
+#include <stdexcept>   // For std::runtime_error
+#include <ctime>       // For std::time
 
 // Platform-specific includes
 #ifdef _WIN32
@@ -153,6 +156,10 @@ private:
     
     // Get the appropriate device path for the given device type and index
     static std::string getDevicePath(DeviceType type, int deviceIndex);
+    
+    // Simulation methods - added declarations to fix the error
+    bool simulateCommand(unsigned long command, void* data, size_t size);
+    int simulateRead(void* buffer, size_t size);
 };
 
 /**
@@ -336,71 +343,6 @@ private:
     
     // Use simulated hardware if real hardware access is not available
     void simulateHardwareMetrics(HardwareMetrics& metrics);
-};
-
-/**
- * @brief System information utility
- * 
- * This class provides information about the system hardware and
- * operating system.
- */
-class SystemInfo {
-public:
-    /**
-     * @brief Get operating system name
-     * 
-     * @return std::string Operating system name
-     */
-    static std::string getOSName();
-    
-    /**
-     * @brief Get operating system version
-     * 
-     * @return std::string Operating system version
-     */
-    static std::string getOSVersion();
-    
-    /**
-     * @brief Get processor core count
-     * 
-     * @return int Number of processor cores
-     */
-    static int getProcessorCoreCount();
-    
-    /**
-     * @brief Get total system memory
-     * 
-     * @return uint64_t Total system memory in bytes
-     */
-    static uint64_t getTotalSystemMemory();
-    
-    /**
-     * @brief Get available system memory
-     * 
-     * @return uint64_t Available system memory in bytes
-     */
-    static uint64_t getAvailableSystemMemory();
-    
-    /**
-     * @brief Get information about available GPUs
-     * 
-     * @return std::vector<std::string> Vector of GPU information strings
-     */
-    static std::vector<std::string> getGPUInfo();
-    
-    /**
-     * @brief Check if the system has CUDA support
-     * 
-     * @return true if CUDA is supported, false otherwise
-     */
-    static bool hasCUDASupport();
-    
-    /**
-     * @brief Check if the system has OpenCL support
-     * 
-     * @return true if OpenCL is supported, false otherwise
-     */
-    static bool hasOpenCLSupport();
 };
 
 } // namespace hardware

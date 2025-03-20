@@ -224,7 +224,7 @@ void runSimulationExample() {
     
     // Create AI driver
     auto driverModel = ai::DriverModelFactory::createWithSkillLevel(0.8f, gpuAccelerator);
-    auto driver = std::make_shared<ai::Driver>(driverModel, vehicle);
+    auto driver = std::make_shared<ai::Driver>(std::make_shared<ai::DriverModel>(driverModel), vehicle);
     
     // Create race simulation
     auto race = std::make_shared<simulation::Race>(track);

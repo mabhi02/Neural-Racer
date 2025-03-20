@@ -1,10 +1,13 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <string>
 #include <vector>
 #include <memory>
 #include <chrono>
 #include <unordered_map>
+#include <thread>  // For std::this_thread
+#include <cmath>   // For math functions
 #include "../hardware/device_driver.hpp"
 
 namespace neural_racer {
@@ -102,6 +105,20 @@ struct InferenceMetrics {
     bool hardwareAccelerated = false;   ///< Whether hardware acceleration was used
     std::string acceleratorName;        ///< Name of the accelerator hardware
 };
+
+/**
+ * @brief Check if a string ends with a specific suffix (C++17 compatible replacement for std::string::ends_with)
+ * 
+ * @param str The string to check
+ * @param suffix The suffix to look for
+ * @return true if the string ends with the suffix, false otherwise
+ */
+inline bool endsWith(const std::string& str, const std::string& suffix) {
+    if (str.length() < suffix.length()) {
+        return false;
+    }
+    return str.compare(str.length() - suffix.length(), suffix.length(), suffix) == 0;
+}
 
 /**
  * @brief Neural network inference engine
@@ -317,6 +334,15 @@ public:
      * @param factor Aggressiveness factor (0.0-1.0)
      */
     void setAggressivenessFactor(float factor);
+    
+    /**
+     * @brief Get the physics vehicle associated with this driver model
+     * 
+     * @return std::shared_ptr<physics::Vehicle> The vehicle
+     */
+    std::shared_ptr<physics::Vehicle> getPhysicsVehicle() const {
+        return nullptr; // Implement this if needed
+    }
 
 private:
     std::unique_ptr<InferenceEngine> inferenceEngine;

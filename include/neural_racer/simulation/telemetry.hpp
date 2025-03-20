@@ -1,5 +1,6 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <memory>
 #include <string>
 #include <vector>
@@ -10,6 +11,7 @@
 #include <deque>
 #include <mutex>
 #include <fstream>
+#include <cmath>    // For math functions
 
 // Forward declarations
 namespace neural_racer {
@@ -356,7 +358,9 @@ private:
     // Vehicle and driver recording
     std::vector<std::weak_ptr<physics::Vehicle>> recordedVehicles;
     std::vector<std::weak_ptr<ai::Driver>> recordedDrivers;
-    std::unordered_map<std::string, std::string> channelPrefixes;
+    
+    // Use void* as key for channel prefixes to handle pointers
+    std::unordered_map<const void*, std::string> channelPrefixes;
     
     // Last recorded vehicle states for delta calculations
     struct VehicleState {

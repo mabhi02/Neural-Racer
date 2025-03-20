@@ -1,9 +1,11 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <string>
 #include <memory>
 #include <vector>
 #include <mutex>
+#include <cmath>  // For math functions
 // Include Engine definition instead of forward declaration
 #include "neural_racer/physics/engine.hpp"
 
@@ -70,7 +72,7 @@ struct VehicleState {
  * This class simulates the physics of a vehicle, including
  * engine, transmission, suspension, and tire dynamics.
  */
-class Vehicle {
+class Vehicle : public std::enable_shared_from_this<Vehicle> {
 public:
     /**
      * @brief Construct a vehicle with the given specifications

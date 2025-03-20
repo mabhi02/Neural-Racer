@@ -1,11 +1,14 @@
 #pragma once
 
+#define _USE_MATH_DEFINES  // For M_PI and other math constants
 #include <string>
 #include <memory>
 #include <vector>
 #include <unordered_map>
 #include <functional>
 #include <mutex>
+#include <random>   // For random number generation
+#include <cmath>    // For math functions
 #include "../ai/driver.hpp"
 #include "../physics/vehicle.hpp"
 #include "track.hpp"
@@ -57,7 +60,12 @@ enum class RaceEventType {
     FlagYellow,
     FlagRed,
     FlagBlue,
-    FlagChequered
+    FlagChequered,
+    // Added missing event types from the error list
+    WeatherChanged,   // Weather condition changes
+    Paused,           // Race paused
+    Resumed,          // Race resumed
+    SectorChanged     // Driver entered new sector
 };
 
 /**
@@ -83,6 +91,7 @@ struct DriverPosition {
     float gapToNext;               ///< Gap to next driver in seconds
     int sector;                    ///< Current track sector
     int pitstops;                  ///< Number of pit stops
+    float _totalDistance;          ///< Internal: total distance traveled
     
     DriverPosition() :
         position(0),
@@ -92,7 +101,8 @@ struct DriverPosition {
         gapToLeader(0.0f),
         gapToNext(0.0f),
         sector(1),
-        pitstops(0) {}
+        pitstops(0),
+        _totalDistance(0.0f) {}
 };
 
 /**
@@ -138,7 +148,7 @@ enum class RaceState {
  * This class simulates a complete race with multiple AI drivers,
  * track conditions, and race events.
  */
-class Race {
+class Race : public std::enable_shared_from_this<Race> {
 public:
     /**
      * @brief Race event callback function type
@@ -315,6 +325,10 @@ private:
     
     mutable std::mutex raceMutex;
     bool paused;
+    
+    // For random number generation
+    std::mt19937 rng;
+    std::uniform_real_distribution<float> dist;
     
     // Race state management
     void updateDriverPositions();
