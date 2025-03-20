@@ -294,7 +294,7 @@ int main() {
         runHardwareExample();
         runInferenceExample();
         runSimulationExample();
-        
+            
         // Clean up
         utils::Logger::shutdown();
         
